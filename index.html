@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CJ Bot - Interactive AI Worker</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff0f5;
+      color: #4b0082;
+    }
+    header {
+      background-color: #d63384;
+      color: #fff;
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    .bot-area {
+      background-color: #fff;
+      border: 2px solid #f8c8dc;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(214, 51, 132, 0.3);
+    }
+    .bot-output {
+      min-height: 100px;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: #ffe6f0;
+      border-radius: 0.5rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #d63384;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    button {
+      background-color: #ff69b4;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff1493;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #8b008b;
+    }
+    .bot-image {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .bot-image img {
+      width: 250px;
+      border-radius: 1rem;
+      border: 3px solid #ff69b4;
+      box-shadow: 0 4px 10px rgba(255, 105, 180, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CJ Bot - Your AI Worker Assistant</h1>
+    <p>Ask me anything, and I'll help you get things done with a sparkle ✨</p>
+  </header>
+  <main>
+    <div class="bot-image">
+      <img src="cj_bot_image.png" alt="CJ Bot Illustration">
+    </div>
+    <section class="bot-area">
+      <div class="bot-output" id="botOutput">Hey bestie! I'm CJ Bot 💁‍♀️ What do you need help with today?</div>
+      <input type="text" id="userInput" placeholder="Type a command like 'Remind me to email Alex at 3 PM'..." />
+      <button onclick="processInput()">Send</button>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 CJ Bot Inc. | Sparkles, sass, and circuits 💖
+  </footer>
+
+  <script>
+    async function processInput() {
+      const input = document.getElementById("userInput").value;
+      const output = document.getElementById("botOutput");
+      output.innerText = "Thinking with glitter... ✨";
+
+      try {
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer YOUR_API_KEY_HERE"
+          },
+          body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [
+              { role: "system", content: "You are CJ Bot, a friendly, girly, and witty assistant." },
+              { role: "user", content: input }
+            ],
+            temperature: 0.85
+          })
+        });
+
+        const data = await response.json();
+        const reply = data.choices?.[0]?.message?.content?.trim();
+        output.innerText = reply || "Oops! No response from CJ Bot.";
+      } catch (error) {
+        output.innerText = "Something went wrong. Check your internet or API key.";
+        console.error("CJ Bot error:", error);
+      }
+
+      document.getElementById("userInput").value = "";
+    }
+  </script>
+</body>
+</html>

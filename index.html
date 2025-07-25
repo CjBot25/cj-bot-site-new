@@ -94,21 +94,21 @@
     </section>
   </main>
   <footer>
-    &copy; 2025 CJ Bot Inc. | Sparkles, sass, and circuits 💖 061 361 8358 | info@cjconnections.co.za
+    &copy; 2025 CJ Bot Inc. | Sparkles, sass, and circuits 💖
   </footer>
 
   <script>
     async function processInput() {
       const input = document.getElementById("userInput").value;
       const output = document.getElementById("botOutput");
-      output.innerText = "Thinking with glitter... ✨";
+      output.innerText = "Thinking with glitter and sparkles... ✨";
 
       try {
         const response = await fetch("https://api.openai.com/v1/chat/completions", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer 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"
+            "Authorization": "Bearer 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"
           },
           body: JSON.stringify({
             model: "gpt-3.5-turbo",

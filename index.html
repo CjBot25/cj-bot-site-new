@@ -3,108 +3,125 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CJ Bot - Your Sassy AI Sidekick</title>
+  <title>CJ Bot - Interactive AI Worker</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f4f4;
-      color: #333;
+      background-color: #fff0f5;
+      color: #4b0082;
     }
     header {
-      background-color: #1f2937;
+      background-color: #d63384;
       color: #fff;
-      padding: 2rem 1rem;
+      padding: 2rem;
       text-align: center;
     }
     header h1 {
       margin: 0;
       font-size: 2.5rem;
     }
-    section {
-      padding: 2rem;
+    main {
       max-width: 900px;
-      margin: auto;
+      margin: 2rem auto;
+      padding: 1rem;
     }
-    .intro {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+    .bot-area {
+      background-color: #fff;
+      border: 2px solid #f8c8dc;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(214, 51, 132, 0.3);
     }
-    .intro img {
-      max-width: 300px;
-      border-radius: 2rem;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    }
-    .intro h2 {
-      margin-top: 1rem;
-      font-size: 2rem;
-    }
-    .features {
-      margin-top: 3rem;
-    }
-    .features h3 {
-      font-size: 1.5rem;
-      color: #1f2937;
-    }
-    .features ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .features li {
+    .bot-output {
+      min-height: 100px;
       margin-bottom: 1rem;
-      padding-left: 1rem;
-      position: relative;
+      padding: 1rem;
+      background: #ffe6f0;
+      border-radius: 0.5rem;
     }
-    .features li::before {
-      content: '🤖';
-      position: absolute;
-      left: 0;
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #d63384;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
     }
-    .audio-sample {
-      margin-top: 2rem;
-      text-align: center;
+    button {
+      background-color: #ff69b4;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff1493;
     }
     footer {
-      background-color: #1f2937;
-      color: #fff;
       text-align: center;
-      padding: 1rem;
-      margin-top: 4rem;
+      padding: 2rem;
+      color: #8b008b;
+    }
+    .bot-image {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .bot-image img {
+      width: 250px;
+      border-radius: 1rem;
+      border: 3px solid #ff69b4;
+      box-shadow: 0 4px 10px rgba(255, 105, 180, 0.5);
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Meet CJ Bot</h1>
-    <p>Your slightly sarcastic, super-helpful AI sidekick</p>
+    <h1>CJ Bot - Your AI Worker Assistant</h1>
+    <p>Ask me anything, and I'll help you get things done with a sparkle ✨</p>
   </header>
-  <section class="intro">
-    <img src="cj_bot_image.png" alt="CJ Bot Illustration" />
-    <h2>Hello, Human 👋</h2>
-    <p>I'm CJ Bot. I keep your life on track, make you laugh, and maybe roast you a little.</p>
-  </section>
-  <section class="features">
-    <h3>What I Can Do:</h3>
-    <ul>
-      <li>Set reminders with sass</li>
-      <li>Motivate you with light sarcasm</li>
-      <li>Deliver random trivia just because</li>
-      <li>Greet you like the queen you are</li>
-      <li>Keep your schedule sharper than your coffee</li>
-    </ul>
-  </section>
-  <section class="audio-sample">
-    <h3>🎙️ Hear Me in Action</h3>
-    <audio controls>
-      <source src="cj_bot_voice.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-  </section>
+  <main>
+    <div class="bot-image">
+      <img src="cj_bot_image.png" alt="CJ Bot Illustration">
+    </div>
+    <section class="bot-area">
+      <div class="bot-output" id="botOutput">Hey bestie! I'm CJ Bot 💁‍♀️ What do you need help with today?</div>
+      <input type="text" id="userInput" placeholder="Type a command like 'Remind me to email Alex at 3 PM'..." />
+      <button onclick="processInput()">Send</button>
+    </section>
+  </main>
   <footer>
-    <p>&copy; 2025 CJ Bot Inc. | Built with sass and circuits.</p>
+    &copy; 2025 CJ Bot Inc. | Sparkles, sass, and circuits 💖
   </footer>
+
+  <script>
+    function processInput() {
+      const input = document.getElementById("userInput").value;
+      const output = document.getElementById("botOutput");
+
+      if (!input.trim()) {
+        output.innerText = "Please type something for me to do, lovely! 💅";
+        return;
+      }
+
+      // Simulated response
+      let response = "Thinking with glitter... ✨";
+      if (input.toLowerCase().includes("remind")) {
+        response = "Got it, sugar! I’ll remind you: " + input.slice(7);
+      } else if (input.toLowerCase().includes("schedule")) {
+        response = "Okay, I’ll schedule that for you, sweetheart! 💖";
+      } else if (input.toLowerCase().includes("joke")) {
+        response = "Why don't robots ever get tired? Because they recharge, darling! 🤖⚡";
+      } else {
+        response = "Hmm... I’m not sure, but I’ll sparkle through it: " + input;
+      }
+
+      output.innerText = response;
+      document.getElementById("userInput").value = "";
+    }
+  </script>
 </body>
 </html>
